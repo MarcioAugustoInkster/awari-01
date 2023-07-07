@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import dadosUsario from './../json/usuarios.json';
 
 const Home = () => {
@@ -44,6 +44,6 @@ const Home = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Home;

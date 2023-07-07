@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Error = () => {
     return(
@@ -7,6 +7,6 @@ const Error = () => {
             <Link to="/">Voltar para Página Inicial</Link>
         </>
     );
-}
+};
 
 export default Error;

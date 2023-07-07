@@ -1,6 +1,6 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import dadosUsuario from './../json/usuarios.json';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const Details = () => {
     const { codigo } = useParams();
@@ -9,7 +9,7 @@ const Details = () => {
     const buscaUsuario = () => {
         const usuario = dadosUsuario?.find((usuario) => usuario.id === codigo);
         setUsuario(usuario);
-    }
+    };
 
     useEffect(() => {
         buscaUsuario();
@@ -55,6 +55,6 @@ const Details = () => {
             : 'sem dados'}
         </div>
     );
-}
+};
 
 export default Details;

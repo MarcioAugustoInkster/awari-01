@@ -2,19 +2,19 @@ const Usuarios = () => {
     const usuarios = [
         {
             codigo: 1,
-            nome: "João"
+            nome: 'João'
         },
         {
             codigo: 2,
-            nome: "Pedro"
+            nome: 'Pedro'
         },
         {
             codigo: 3,
-            nome: "Maria"
+            nome: 'Maria'
         },
         {
             codigo: 4,
-            nome: "Ana"
+            nome: 'Ana'
         }
     ];
 
@@ -30,6 +30,6 @@ const Usuarios = () => {
             </ul>
         </>
     );
-}
+};
 
 export default Usuarios;

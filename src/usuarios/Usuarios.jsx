@@ -23,10 +23,9 @@ const Usuarios = () => {
       <h1>Lista de Usuários</h1>
       <ul>
         {usuarios.map((item, index) => (
-          <li key={index}>
-            {item.codigo} - {item.nome}
-          </li>
-        ))}
+        <li key={index}>
+          {item.codigo} - {item.nome}
+        </li>))}
       </ul>
     </>
   );

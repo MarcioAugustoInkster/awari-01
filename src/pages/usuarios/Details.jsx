@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import dadosUsuario from './../json/usuarios.json';
+import dadosUsuario from '../../json/usuarios.json';
 import { useEffect, useState } from 'react';
 
 const Details = () => {
@@ -17,7 +17,11 @@ const Details = () => {
 
   return (
     <div style={{ margin: '0 16px' }}>
-      <Link to="/">Voltar para Home</Link>
+      <div>
+        <Link to="/">Voltar para o Inicio</Link>
+        <span> | </span>
+        <Link to="/usuarios">Voltar para Usuarios</Link>
+      </div>
       {usuario !== undefined ? (
         <table
           style={{

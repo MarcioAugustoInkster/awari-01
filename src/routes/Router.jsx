@@ -1,14 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import Details from '../pages/Details';
+import Usuarios from '../pages/usuarios/Usuarios';
+import Details from '../pages/usuarios/Details';
 import Error from '../pages/Error';
+import Home from '../pages/Home';
+import Pokemon from '../pages/pokemons/Pokemon';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/details/:codigo" element={<Details />} />
+        <Route path="/usuarios" element={<Usuarios />} />
+        <Route path="/usuarios/detalhes/:codigo" element={<Details />} />
+        <Route path="/pokemon" element={<Pokemon />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

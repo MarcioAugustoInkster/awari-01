@@ -4,14 +4,16 @@ const Home = () => {
   return (
     <div>
       <h1>Página Inicial</h1>
-      <ul>
-        <li>
-          <Link to="/usuarios">Exercício Lista de Usuários</Link>
-        </li>
-        <li>
-          <Link to="/pokemon">Exercício Pokémon</Link>
-        </li>
-      </ul>
+      <div className="list-center">
+        <ul>
+          <li>
+            <Link to="/usuarios">Exercício Lista de Usuários</Link>
+          </li>
+          <li>
+            <Link to="/pokemon">Exercício Pokémon</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

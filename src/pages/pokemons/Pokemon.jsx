@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import pokeApi from '../../routes/axios';
+import { AppContext } from '../../context/AppContext';
 
 const Pokemon = () => {
   const [pokemons, setPokemons] = useState([]);
   const isLoadedRef = useRef(false);
+
+  const { credentials } = useContext(AppContext);
 
   const formatData = useCallback(async() => {
     let apiData = [];
@@ -35,6 +38,20 @@ const Pokemon = () => {
       <h4>
         <Link to="/">Página Inicial</Link>
       </h4>
+      <ul>
+        <li>
+          <span>{credentials.user}</span>
+        </li>
+        <li>
+          <span>{credentials.email}</span>
+        </li>
+        <li>
+          <span>{credentials.access}</span>
+        </li>
+        <li>
+          <span>{credentials.logado ? 'LOGADO' : 'NÃO LOGADO'}</span>
+        </li>
+      </ul>
       <div className="container-table">
         <h1>Lista de Pokémons</h1>
         <table className="pokemon-table">
@@ -52,7 +69,9 @@ const Pokemon = () => {
               pokemons.map((item, index) => (
                 <tr key={index}>
                   <td>#{item.id}</td>
-                  <td><img src={item.picture} alt={item.name} /></td>
+                  <td>
+                    <img src={item.picture} alt={item.name} />
+                  </td>
                   <td>{item.name}</td>
                   <td>{item.height} mt</td>
                   <td>{item.weight} kg</td>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1000,
+    "username": "Administrator",
+    "email": "admin_account@email.com",
+    "password": "4dm1np@55w0rd1000",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbWluaXN0cmF0b3IiLCJpYXQiOjE1MTYyMzkwMjJ9.tSvs4a5wYtDaz4Coyj-Qg1tAC7XzTDu2a24d8uyegxc",
+    "access": ["admin"],
+    "logged": false
+  },
+  {
+    "id": 4991,
+    "username": "Marcio Augusto Schlosser",
+    "email": "mas_email@fake.com",
+    "password": "origin@l_123",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1hcmNpbzkwIiwiaWF0IjoxNTE2MjM5MDIyfQ.zvJeomvoxrFF3qwsi82QPCr4-mhqZm_KYXGZo_smHs0",
+    "access": ["customer"],
+    "logged": false
+  }
+]

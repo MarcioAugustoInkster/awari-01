@@ -1,13 +1,16 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+// import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import pokeApi from '../../routes/axios';
-import { AppContext } from '../../context/AppContext';
+// import { AppContext } from '../../context/AppContext';
 
 const Pokemon = () => {
   const [pokemons, setPokemons] = useState([]);
   const isLoadedRef = useRef(false);
 
-  const { credentials } = useContext(AppContext);
+  // const { credentials } = useContext(AppContext);
+  /** useContext() changed to Reducer */
+  const credentials = {};
 
   const formatData = useCallback(async() => {
     let apiData = [];

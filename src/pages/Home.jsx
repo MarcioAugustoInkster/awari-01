@@ -12,6 +12,9 @@ const Home = () => {
           <li>
             <Link to="/pokemon">Exercício Pokémon</Link>
           </li>
+          <li>
+            <Link to="/account/login">Login</Link>
+          </li>
         </ul>
       </div>
     </div>

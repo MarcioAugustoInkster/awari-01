@@ -1,27 +1,29 @@
 import './user-status.css';
 import { useEffect, useRef, useState } from 'react';
-import { storageIsValid, storageRead, storageRemove } from '../utils/locals/Storage';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { credentialActions } from '../store/user';
+import storageRead, { storageIsValid, storageRemove } from '../utils/locals/Storage';
 
 const UserStatus = () => {
   const [username, setUsername] = useState('');
-  const [showStatus, setShowStatus] = useState(false);
+  const [isValid, seIsValid] = useState(false);
+  const isLoadedRef = useRef(false);
   const navigate = useNavigate();
-  const isLoggedRef = useRef(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isLoggedRef.current) {
-      const items = storageRead();
-      if (items !== null) {
-        setUsername(items.user_name);
-        setShowStatus(true);
+    if (!isLoadedRef.current) {
+      const hasLocalData = storageIsValid();
+      if (hasLocalData) {
+        const localData = storageRead();
+        dispatch(credentialActions.init(localData));
+        setUsername(localData.user_name);
+        seIsValid(true);
       }
     }
-    if (!storageIsValid()) {
-      setShowStatus(false);
-    }
-    return () => (isLoggedRef.current = true);
-  }, [showStatus]);
+    return () => isLoadedRef.current = true;
+  }, [dispatch]);
 
   const handleLogoff = () => {
     storageRemove();
@@ -34,7 +36,7 @@ const UserStatus = () => {
   return(
     <>
       <div className="login-status">
-        {showStatus ?
+        {isValid ?
         <>
           <div className="status-view">
             <strong>Logado:</strong>

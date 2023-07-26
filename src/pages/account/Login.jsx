@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import { credentialActions } from '../../store/user';
 import userDataApi from './../../assets/json/users_mock-databank.json';
-import storageAdd from '../../utils/locals/Storage';
+import { storageAdd } from '../../utils/locals/Storage';
 
 const Login = () => {
   const [statusMessage, setStatusMessage] = useState();
@@ -12,7 +12,6 @@ const Login = () => {
   const passcodeRef = useRef('');
 
   const navigation = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleLogin = (event) => {
@@ -34,7 +33,6 @@ const Login = () => {
       dispatch(credentialActions.add(apiResult));
       storageAdd(apiResult);
       navigation('/home');
-      setStatusMessage('Login efetivado com sucesso!');
     } else {
       setStatusMessage('Usuário ou Senha incorretos');
     }

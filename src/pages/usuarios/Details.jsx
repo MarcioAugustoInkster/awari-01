@@ -9,7 +9,9 @@ const Details = () => {
 
   const buscaUsuario = () => {
     const usuario = dadosUsuario?.find((usuario) => usuario.id === codigo);
-    setUsuario(usuario);
+    if (usuario !== undefined) {
+      setUsuario(usuario);
+    }
   };
 
   useEffect(() => {
@@ -73,7 +75,7 @@ const Details = () => {
             </tbody>
           </table>
         ) : (
-          'sem dados'
+          <span>Não há registros</span>
         )}
       </div>
     </div>

@@ -4,12 +4,13 @@ import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import { credentialActions } from '../../store/user';
 import userDataApi from './../../assets/json/users_mock-databank.json';
-import { storageAdd } from '../../utils/locals/Storage';
 
 const Login = () => {
   const [statusMessage, setStatusMessage] = useState();
-  const usernameRef = useRef('');
-  const passcodeRef = useRef('');
+  // const usernameRef = useRef('');
+  // const passcodeRef = useRef('');
+  const usernameRef = useRef('mas_email@fake.com');
+  const passcodeRef = useRef('origin@l_123');
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -17,21 +18,28 @@ const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    if (usernameRef.current.value.trim().length === 0 ||
-      passcodeRef.current.value.trim().length === 0) {
-      setStatusMessage('Informe um Usuário e Senha');
-      return;
-    }
+    // if (usernameRef.current.value.trim().length === 0 ||
+    //   passcodeRef.current.value.trim().length === 0) {
+    //   setStatusMessage('Informe um Usuário e Senha');
+    //   return;
+    // }
 
-    let apiResult = userDataApi.find(user =>
-      (user.username === usernameRef.current.value ||
-      user.email === usernameRef.current.value) &&
-      user.password === passcodeRef.current.value && !user.logged);
+    let apiResult = userDataApi.find((user) =>
+      (user.username === usernameRef.current ||
+      user.email === usernameRef.current) &&
+      user.password === passcodeRef.current &&
+      !user.logged
+    );
 
     if (apiResult !== undefined) {
-      apiResult.logged = true;
-      dispatch(credentialActions.add(apiResult));
-      storageAdd(apiResult);
+      const credData = {
+        username: apiResult.username?.length === 0
+          ? apiResult.email : apiResult.username,
+        token: apiResult.token,
+        access: apiResult.access,
+        logged: true
+      };
+      dispatch(credentialActions.add(credData));
       navigation('/home');
     } else {
       setStatusMessage('Usuário ou Senha incorretos');
@@ -51,11 +59,13 @@ const Login = () => {
         <form onSubmit={(event) => handleLogin(event)}>
           <div className="login-input">
             <label htmlFor="lgusername">Username or Email</label>
-            <input type="text" id="lgusername" ref={usernameRef} />
+            {/* <input type="text" id="lgusername" ref={usernameRef} /> */}
+            <input type="text" id="lgusername" />
           </div>
           <div className="login-input">
             <label htmlFor="lgpasscode">Senha</label>
-            <input type="text" id="lgpasscode" ref={passcodeRef} />
+            {/* <input type="text" id="lgpasscode" ref={passcodeRef} /> */}
+            <input type="text" id="lgpasscode" />
           </div>
           <button type="submit">Login</button>
         </form>

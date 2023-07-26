@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { credentialReducer } from './user';
-import storageAdd from '../utils/locals/Storage';
+import { storageAdd } from '../utils/locals/Storage';
 
 const store = configureStore({
   reducer: {
@@ -10,9 +10,7 @@ const store = configureStore({
 
 store.subscribe(() => {
   const state = store.getState();
-  if (state !== null) {
-    storageAdd(state);
-  }
+  storageAdd(state);
 });
 
 export default store;

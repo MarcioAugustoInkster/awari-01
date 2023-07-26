@@ -6,41 +6,38 @@ import { credentialActions } from '../store/user';
 import storageRead, { storageIsValid, storageRemove } from '../utils/locals/Storage';
 
 const UserStatus = () => {
-  const [username, setUsername] = useState('');
-  const [isValid, seIsValid] = useState(false);
+  const [credentials, setCredentials] = useState();
   const isLoadedRef = useRef(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isLoadedRef.current) {
-      const hasLocalData = storageIsValid();
-      if (hasLocalData) {
+      const hasData = storageIsValid();
+      if (hasData) {
         const localData = storageRead();
+        setCredentials(localData);
         dispatch(credentialActions.init(localData));
-        setUsername(localData.user_name);
-        seIsValid(true);
       }
     }
-    return () => isLoadedRef.current = true;
+    return () => (isLoadedRef.current = true);
   }, [dispatch]);
 
   const handleLogoff = () => {
     storageRemove();
-    if (window.location.pathname !== '/' ||
-      window.location.pathname !== '/home') {
-        navigate('/conta/login');
-      }
+    if (window.location.pathname !== '/' || window.location.pathname !== '/home') {
+      navigate('/conta/login');
+    }
   };
 
   return(
     <>
       <div className="login-status">
-        {isValid ?
+        {credentials !== undefined ?
         <>
           <div className="status-view">
             <strong>Logado:</strong>
-            <span>{username}</span>
+            <span>{credentials.username}</span>
           </div>
           <button type="button" onClick={() => handleLogoff()}>Logout</button>
         </>

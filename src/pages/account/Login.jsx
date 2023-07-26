@@ -1,14 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import { credentialActions } from '../../store/user';
 import userDataApi from './../../assets/json/users_mock-databank.json';
+import storageAdd from '../../utils/locals/Storage';
 
 const Login = () => {
   const [statusMessage, setStatusMessage] = useState();
   const usernameRef = useRef('');
   const passcodeRef = useRef('');
+
+  const navigation = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -29,6 +32,8 @@ const Login = () => {
     if (apiResult !== undefined) {
       apiResult.logged = true;
       dispatch(credentialActions.add(apiResult));
+      storageAdd(apiResult);
+      navigation('/home');
       setStatusMessage('Login efetivado com sucesso!');
     } else {
       setStatusMessage('Usuário ou Senha incorretos');

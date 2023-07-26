@@ -11,10 +11,11 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/usuarios" element={<Usuarios />} />
         <Route path="/usuarios/detalhes/:codigo" element={<Details />} />
         <Route path="/pokemon" element={<Pokemon />} />
-        <Route path="/account/">
+        <Route path="/conta/">
           <Route path="login" element={<Login />} />
         </Route>
         <Route path="*" element={<Error />} />

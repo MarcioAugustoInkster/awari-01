@@ -1,0 +1,16 @@
+.login-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px;
+}
+.status-view {
+  margin-right: 6px;
+}
+.login-status strong, .login-status span {
+  font-family: 'Tahoma';
+  font-size: 14px;
+}
+.login-status strong {
+  margin-right: 6px;
+}

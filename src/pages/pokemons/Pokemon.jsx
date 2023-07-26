@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-// import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import pokeApi from '../../routes/axios';
-// import { AppContext } from '../../context/AppContext';
+import UserStatus from '../../components/UserStatus';
 
 const Pokemon = () => {
   const [pokemons, setPokemons] = useState([]);
   const isLoadedRef = useRef(false);
 
-  // const { credentials } = useContext(AppContext);
-  /** useContext() changed to Reducer */
   const credentials = {};
 
   const formatData = useCallback(async() => {
@@ -38,6 +35,7 @@ const Pokemon = () => {
 
   return (
     <div className="pokemon-container">
+      <UserStatus />
       <h4>
         <Link to="/">Página Inicial</Link>
       </h4>
@@ -50,9 +48,6 @@ const Pokemon = () => {
         </li>
         <li>
           <span>{credentials.access}</span>
-        </li>
-        <li>
-          <span>{credentials.logado ? 'LOGADO' : 'NÃO LOGADO'}</span>
         </li>
       </ul>
       <div className="container-table">

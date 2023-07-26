@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import dadosUsario from '../../json/usuarios.json';
+import UserStatus from '../../components/UserStatus';
 
 const Usuarios = () => {
   return (
     <div>
+      <UserStatus />
       <Link to="/">Voltar para Home</Link>
       <h1>Lista de Usuários</h1>
       <div>

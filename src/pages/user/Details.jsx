@@ -1,14 +1,14 @@
 import { Link, useParams } from 'react-router-dom';
-import dadosUsuario from '../../json/usuarios.json';
+import dadosUsuario from './../../assets/json/usuarios-mock.json';
 import { useEffect, useState } from 'react';
-import UserStatus from '../../components/UserStatus';
+import LoginView from '../../components/login_view/LoginView';
 
 const Details = () => {
   const { codigo } = useParams();
   const [usuario, setUsuario] = useState();
 
   const buscaUsuario = () => {
-    const usuario = dadosUsuario?.find((usuario) => usuario.id === codigo);
+    const usuario = dadosUsuario?.usuarios.find((usuario) => usuario.id === codigo);
     if (usuario !== undefined) {
       setUsuario(usuario);
     }
@@ -20,7 +20,7 @@ const Details = () => {
 
   return (
     <div>
-      <UserStatus />
+      <LoginView />
       <div style={{ margin: '0 16px' }}>
         <div>
           <Link to="/">Voltar para o Inicio</Link>

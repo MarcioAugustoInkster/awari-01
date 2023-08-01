@@ -1,3 +1,7 @@
+export default function storageRead() {
+  return JSON.parse(localStorage.getItem('user_creds'));
+}
+
 export function storageAdd(data) {
   localStorage.setItem('user_creds', JSON.stringify({
     user_name: data.username?.length > 0 ? data.username : data.email,
@@ -5,10 +9,6 @@ export function storageAdd(data) {
     is_logged: data.logged,
     user_token: data.token
   }));
-}
-
-export default function storageRead() {
-  return JSON.parse(localStorage.getItem('user_creds'));
 }
 
 export function storageRemove() {

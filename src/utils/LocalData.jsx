@@ -3,12 +3,7 @@ export default function storageRead() {
 }
 
 export function storageAdd(data) {
-  localStorage.setItem('user_creds', JSON.stringify({
-    user_name: data.username?.length > 0 ? data.username : data.email,
-    logged_as: data.access,
-    is_logged: data.logged,
-    user_token: data.token
-  }));
+  localStorage.setItem('user_creds', JSON.stringify(data.credential));
 }
 
 export function storageRemove() {
@@ -16,6 +11,8 @@ export function storageRemove() {
 }
 
 export const storageIsValid = () => {
-  const items = JSON.parse(localStorage.getItem('user_creds'));
-  return Object.keys(items).length > 0;
+  const localData = localStorage.getItem('user_creds');
+  if (localData !== null) {
+    return Object.keys(JSON.parse(localData)).length > 0;
+  }
 };

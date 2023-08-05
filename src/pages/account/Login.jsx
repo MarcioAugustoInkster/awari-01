@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import './login.css';
 import store from '../../store/store';
 import { credentialActions } from '../../store/user';
+import InputTextRef from '../../components/inputs/input-text/InputTextRef';
 
 const Login = () => {
   const usernameRef = useRef('');
   const passcodeRef = useRef('');
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -20,6 +22,8 @@ const Login = () => {
     };
 
     store.dispatch(credentialActions.add(usuario));
+
+    navigate('/home');
   };
 
   return (
@@ -29,12 +33,18 @@ const Login = () => {
         <h1>LOGIN</h1>
         <form onSubmit={(event) => handleLogin(event)}>
           <div className="login-input">
-            <label htmlFor="lgusername">Username or Email</label>
-            <input type="text" id="lgusername" ref={usernameRef} required />
+            <InputTextRef
+              ref={usernameRef}
+              placeholder="Usuário ou E-mail"
+              required
+            />
           </div>
           <div className="login-input">
-            <label htmlFor="lgpasscode">Senha</label>
-            <input type="text" id="lgpasscode" ref={passcodeRef} required />
+            <InputTextRef
+              ref={passcodeRef}
+              placeholder="Senha"
+              required
+            />
           </div>
           <button type="submit">Login</button>
         </form>

@@ -20,14 +20,3 @@
   border: 1px solid #aaa;
   padding: 6px 12px;
 }
-button {
-  border: 1px solid #ccc;
-  padding: 6px 12px;
-  color: #eee;
-  background-color: #5a5b72;
-}
-button:active {
-  color: #333;
-  border-color: #aaa;
-  background-color: #babad3;
-}

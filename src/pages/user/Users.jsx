@@ -1,39 +1,26 @@
 import { Link } from 'react-router-dom';
-import dadosUsario from './../../assets/json/usuarios-mock.json';
-import LoginView from '../../components/login_view/LoginView';
+import UserTable from '../../components/tables/UserTable';
+import { useEffect, useRef, useState } from 'react';
+import usuariosMock from '../../assets/json/usuarios-mock.json';
 
 const Users = () => {
+  const [usuarios, setUsuarios] = useState([]);
+  const isLoadedRef = useRef(false);
+
+  useEffect(() => {
+    if (!isLoadedRef.current) {
+      setUsuarios(usuariosMock.usuarios);
+    }
+    return () => isLoadedRef.current = true;
+  }, []);
+
   return (
     <div>
-      <LoginView />
-      <Link to="/">Voltar para Home</Link>
-      <h1>Lista de Usuários</h1>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Codigo</th>
-              <th>Nome do Usuário</th>
-              <th>Detalhes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dadosUsario?.usuarios.length > 0 ? (
-            dadosUsario.usuarios.map((items, index) => (
-              <tr key={index}>
-                <td>{items.id}</td>
-                <td>{items.author}</td>
-                <td>
-                  <Link to={`/usuarios/detalhes/${items.id}`}>Detalhes</Link>
-                </td>
-              </tr>
-            ))) : (
-            <tr>
-              <td>Tabela vazia</td>
-            </tr>)}
-          </tbody>
-        </table>
+      <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
+        <Link to="/">Voltar</Link>
       </div>
+      <h1>Lista de Usuários</h1>
+      <UserTable item={usuarios} />
     </div>
   );
 };

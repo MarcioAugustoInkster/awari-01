@@ -14,23 +14,20 @@ const LoginView = () => {
 
   useEffect(() => {
     const localData = storageRead();
-    if (localData !== null) {
-      if (Object.keys(localData).length > 0) {
-        setUsuario(localData);
-      }
+    if (localData) {
+      setUsuario(localData);
     }
   }, []);
 
   return(
     <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '25px'}}>
-      {usuario !== undefined
-      ?
+      {usuario !== undefined ?
       <div>
         <strong>Usuário: </strong>
         <span>{usuario['usuario']}</span>
         <button type="button" onClick={onLogoutHandler}>Logout</button>
-      </div>
-      : <span>Sem dados de Usuário</span>}
+      </div> :
+      <span>Sem dados de Usuário</span>}
     </div>
   );
 };
